@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ExamenMvcCoreAlexGM.Models.Coche>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Nuevo coche</a>
+</p>
+<form method="post" class="card p-2 col-5 m-3">
+    <label>Buscador de coches por modelo :</label>
+    <input class="form-control" type="text" name="modelo" /><br />
+    <button class="btn btn-success">Buscar</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCoche)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conductor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCoche)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor)
+            </td>
+            <td>
+                <img style="height:200px ; width:200px;" src="@item.Imagen"/>
+               
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id =item.IdCoche }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdCoche }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdCoche })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
